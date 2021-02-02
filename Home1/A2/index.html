@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>delete spaces</title>
+</head>
+
+<body>
+<script> 
+    'use strict'
+    
+ let str = prompt('Введите строку:');
+ while(str === "" ){
+  str = prompt('Срока не может быть пустой! Введите строку:');
+};
+//let str = '    ллляя лллл ппп     '
+
+function deleteSpaces(string){
+   let strNoSpace = string.split(" ").filter(word => word.length > 0).join(" ");
+  alert(`Вы ввели: \"${str}\"
+Мы сделали: \"${strNoSpace}\"`);
+
+};
+if(str >= " " && str !== null){
+  deleteSpaces(str);
+};
+</script>
+</body>
+
+</html>

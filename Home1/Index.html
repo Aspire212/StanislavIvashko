@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Омнланое</title>
+</head>
+
+<body>
+
+</body>
+<script>
+'use strict'
+    var lastName = prompt('Ведите вашу фамилию: ');
+    while (lastName === ""){
+    lastName = prompt('Поле не может быть пустым, введите фамилию: ');
+    };
+    var firstName = prompt('Ведите ваше имя: ');
+    while (firstName === ""){
+    firstName = prompt('Поле не может быть пустым, введите имя: ');
+    };
+    var faseName = prompt('Ведите ваше отчество: ');
+    while (faseName === ""){
+    faseName = prompt('Поле не может быть пустым, введите отчество: ');
+    };
+    var gender = confirm('Вы мужчина?');
+    var age = prompt('Введите ваш возраст: ');
+    var old;
+    var yesNo;
+
+    while (isNaN(parseInt(age))) {
+        age = prompt('Введите коректный возраст: ');
+    };
+
+    gender ? old = 60 : old = 55;
+
+    age >= old ? yesNo = 'да' : yesNo = 'нет';
+
+
+ alert(`Ваше ФИО: ${lastName} ${firstName} ${faseName}
+Ваш возраст в годах: ${age} 
+Ваш возраст в днях: ${age * 365} 
+Через 5 лет вам будет: ${parseInt(age) + 5}
+Вы на пенсии: ${yesNo}`);
+</script>
+
+</html>

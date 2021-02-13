@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+</head>
+
+<body>
+<script>
+  let str = prompt('Введите строку на кирилице:')
+const letter = ['а', 'у', 'о', 'ы', 'и', 'э', 'я', 'ю', 'ё', 'е'];
+
+function vovels(str, letter) {
+    let counter = 0;
+    for (let i = 0; i < str.length; i++) {
+        for (let j = 0; j < letter.length; j++) {
+            if (str[i] === letter[j]) {
+                counter++
+            }
+        }
+    }
+    return counter
+}
+alert(`В строке ${str} - ${vovels(str, letter)} гласных букв!`)
+</script>
+</body>
+
+</html>

@@ -3,16 +3,17 @@ window.addEventListener('DOMContentLoaded', function() {
     const lcd = document.querySelector('.lcd');
     const message = document.querySelector('.message'); //для деления на "0"!!
     const btn = document.querySelector('.keypad');
-    const op = ["+", "-", "*", "/", "="];
+    const sign = ["+", "-", "*", "/", "="];
     let str = '';
     btn.addEventListener('click', function(e) {
         if (e.target.value !== '=') {
             if (e.target.classList.contains('op')) {
                 //замена знака операции на новый при нажатии
-                op.forEach(el => {
+                sign.forEach(el => {
                     el === str[str.length - 1] ? str = str.slice(0, -1) : false;
                 });
-            }
+            }\
+
             str += e.target.value;
             lcd.innerHTML = str;
         }

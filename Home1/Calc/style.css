@@ -2,67 +2,71 @@ body {
     font-size: 15pt;
     font-size: 'Arial', sans-serif;
 }
-*{
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-.calc{
-  width: 400px;
-  height: 450px;
-  background: #3BBAA6;
-  margin: 0 auto;
-  padding: 10px;
+.calc {
+    width: 400px;
+    height: 450px;
+    background: #3BBAA6;
+    margin: 10vw auto;
+    padding: 10px;
 }
 
-.lcd{
-  width: 380px;
-  height: 100px;
-  background: #7D7D7D;
-  border-radius: 2px;
-  border: solid 2px #212322;
-  margin: 0px auto;
-  font-size: 40px;
-  line-height: 100px;
-  text-align: right;
-  color: #DBDAD9
-}
-.message{
-  width: 380px;
-  height: 30px;
-  font-size: 20px;
-  line-height: 30px;
-  text-align: center;
-  color: #DF1212;
-}
-.keypad{
-  width: 380px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding-top: 20px;
+.lcd {
+    width: 380px;
+    height: 100px;
+    background: #7D7D7D;
+    border-radius: 2px;
+    border: solid 2px #212322;
+    margin: 0px auto;
+    font-size: 40px;
+    line-height: 100px;
+    text-align: right;
+    color: #DBDAD9
 }
 
-button{
-  width: 90px;
-  height: 50px;
-  margin-top: 5px;
-  border-radius: 2px;
-  border: solid 2px #212322;
-  font-size: 35px;
+.message {
+    width: 380px;
+    height: 30px;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    color: #DF1212;
 }
+
+.keypad {
+    width: 380px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+button {
+    width: 90px;
+    height: 50px;
+    margin-top: 5px;
+    border-radius: 2px;
+    border: solid 2px #212322;
+    font-size: 35px;
+}
+
 .reset,
-.del{
-  width: 180px;
-  line-height: 50px;
+.del {
+    width: 186px;
+    line-height: 50px;
 }
 
-.equals{
-  background: #F8240B;
+.equals {
+    background: #F8240B;
 }
 
-button:active{
-  border: 5px solid black;
+button:active {
+    border: 5px solid black;
 }

@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', function() {
     const lcd = document.querySelector('.lcd');
     const message = document.querySelector('.message'); //для деления на "0"!!
     const btn = document.querySelector('.keypad');
-    const op = ["+", "-", "*", "/"];
+    const op = ["+", "-", "*", "/", "="];
     let str = '';
     btn.addEventListener('click', function(e) {
         if (e.target.value !== '=') {
@@ -81,15 +81,3 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
-/*let e = '2.2+4/2';
-e = e.split(/\b/);
-console.log(e)str.map((el, i) => {
-  let replaceEl;
-  el === "." ? replaceEl = str.splice(i - 1, 3, (str[i - 1] + str[i] + str[i + 1])) : false;
-});
-for (let i = 0; i < e.length; i++) {
-  if (e[i] === ".") {
-    let  replaceEl = e.splice(i - 1, 3, (e[i - 1] + e[i] + e[i + 1]));
-  }
-}
-console.log(e)*/

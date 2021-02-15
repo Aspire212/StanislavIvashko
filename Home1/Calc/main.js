@@ -28,7 +28,7 @@ window.addEventListener('DOMContentLoaded', function() {
             str = str.split(/\b/); //разбиваем строку на символы и числа
             searchDot(str);
             if (str.length < 3) {
-                str = str.join("")
+                str = str.join("");
                 lcd.innerHTML = str;
             } else {
                 calculated(str);

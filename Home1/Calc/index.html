@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Orbitron:wght@500&display=swap" rel="stylesheet">
     <title>HTML</title>
 
     <!-- HTML -->
@@ -17,29 +18,33 @@
 
 <body>
     <div class="calc">
-        <div class="lcd">
+        <div class="wrap">
+            <div class="lcd">
 
-        </div>
-        <div class="message">
+            </div>
+            <div class="message">
 
+            </div>
         </div>
         <div class="keypad">
-            <button class="reset">C</button>
-            <button class="del">&larr;</button>
+            <button class="reset">c</button>
+            <button class="del">&lArr;</button>
+            <button></button>
+            <button class="op" value="/">&divide;</button>
             <button value="7">7</button>
             <button value="8">8</button>
             <button value="9">9</button>
-            <button class="op" value="+">+</button>
+            <button class="op" value="*">&times;</button>
             <button value="4">4</button>
             <button value="5">5</button>
             <button value="6">6</button>
-            <button class="op" value="*">*</button>
+            <button class="op" value="-">-</button>
             <button value="1">1</button>
             <button value="2">2</button>
             <button value="3">3</button>
-            <button class="op" value="-">-</button>
-            <button class="op" value="/">/</button>
+            <button class="op" value="+">+</button>
             <button value="0">0</button>
+            <button>00</button>
             <button value=".">.</button>
             <button class="op equals" value="">=</button>
         </div>

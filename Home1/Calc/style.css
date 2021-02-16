@@ -1,6 +1,6 @@
 body {
     font-size: 15pt;
-    font-size: 'Arial', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 * {
@@ -11,58 +11,57 @@ body {
 
 .calc {
     width: 400px;
-    height: 450px;
-    background: #3BBAA6;
+    background: #1e2c41;
     margin: 10vw auto;
-    padding: 10px;
+}
+
+.wrap {
+    background: #3232ff;
+    border-radius: 2px;
+    border: solid 2px #212322;
 }
 
 .lcd {
-    width: 380px;
-    height: 100px;
-    background: #7D7D7D;
-    border-radius: 2px;
-    border: solid 2px #212322;
-    margin: 0px auto;
+    width: 400px;
+    height: 120px;
+    margin: 0 auto;
+    font-family: 'Orbitron', sans-serif;
     font-size: 40px;
-    line-height: 100px;
+    line-height: 120px;
     text-align: right;
     color: #DBDAD9;
-    padding: 0 10px;
+    padding: 0 6px;
     letter-spacing: 2px;
 }
 
 .message {
     width: 380px;
-    height: 30px;
+    height: 20px;
     font-size: 20px;
-    line-height: 30px;
+    font-weight: 600;
     text-align: center;
-    color: #DF1212;
+    color: #aa8e8e;
+    position: relative;
+    top: -20px;
 }
 
 .keypad {
-    width: 380px;
+    width: 400px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding-top: 20px;
 }
 
 button {
-    width: 90px;
+    margin: 0;
+    width: 100px;
     height: 50px;
-    margin-top: 5px;
     border-radius: 2px;
-    border: solid 2px #212322;
+    border: solid 1px #212322;
     font-size: 35px;
-}
-
-.reset,
-.del {
-    width: 186px;
-    line-height: 50px;
+    background: #293d5a;
+    color: #DBDAD9;
 }
 
 .equals {

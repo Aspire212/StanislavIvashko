@@ -29,7 +29,6 @@ window.addEventListener('DOMContentLoaded', function() {
                 str += e.target.value;
                 lcd.innerHTML = str;
             }
-
         }
         //сбросс
         if (e.target.classList.contains('reset')) {

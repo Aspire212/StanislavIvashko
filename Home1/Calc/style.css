@@ -43,6 +43,7 @@ body {
     color: #aa8e8e;
     position: relative;
     top: -20px;
+    animation: 1.5s tiktak infinite alternate linear;
 }
 
 .keypad {
@@ -64,10 +65,31 @@ button {
     color: #DBDAD9;
 }
 
+.pm{
+  font-size: 25px;
+}
+
 .equals {
     background: #F8240B;
 }
 
 button:active {
     border: 5px solid black;
+}
+
+@keyframes tiktak{
+  0%{
+    color: #aa8e8e;
+    transform: scale(0.95);
+  }
+  50%{
+    color: #DBDAD9;
+    transform: scale(1);
+
+  }
+  100%{
+    color: #aa8e8e;
+    transform: scale(0.95);
+    
+  }
 }

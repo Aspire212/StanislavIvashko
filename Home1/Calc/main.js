@@ -3,14 +3,14 @@ window.addEventListener('DOMContentLoaded', function() {
     const lcd = document.querySelector('.lcd');
     const message = document.querySelector('.message'); //для деления на "0"!!
     const btn = document.querySelector('.keypad');
-    const sign = ["+", "-", "*", "/", "="];
+    const sign = ["+", "-", "*", "/", "=", '&divide;', '&times;'];
     let str = '0';
     lcd.innerHTML = str;
     let counter = 0; //счетчик для кликов
     btn.addEventListener('click', function(e) {
         counter++;
         //замена 0 на другую цифру
-        if (counter === 1 && !isNaN(e.target.value)) {
+        if (counter === 1 && !isNaN(e.target.value) && !e.target.classList.contains('pm')) {
             if (e.target.value === "0") {
                 counter = 0;
             }
@@ -26,7 +26,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
             if (!e.target.classList.contains('keypad')) {
                 str += e.target.value;
-                lcd.innerHTML = str;
+                lcd.innerHTML = str.replace(sign[3], sign[5]).replace(sign[2], sign[6]);
             }
         }
         //сбросс
@@ -34,6 +34,20 @@ window.addEventListener('DOMContentLoaded', function() {
             str = "0";
             counter = 0;
             lcd.innerHTML = str;
+        }
+        //унарный минус
+        if(e.target.classList.contains('pm')){
+          if(str.length === 1 && str !== '0'){
+            str = sign[1] + str;
+            console.log(str)
+          }
+          else if(str[0] === sign[1]){
+            str = str.substr(1, str.length-1);
+          }
+          if(str === '0'){
+            counter = 0;
+          }
+          lcd.innerHTML = str;
         }
         //стирание последнего символа
         if (e.target.classList.contains('del')) {
@@ -47,11 +61,11 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         }
         if (e.target.classList.contains('equals')) {
-            //разбиваем строку по сииволам
+            //разбиваем строку по сиимволам
             str = str.split(/\b/);
             //если первый символ выражения "-"
             if (str[0] === sign[1]) {
-                str.unshift(0)
+              str.unshift(0)
             }
             //деление на ноль
             str.forEach((el, i) => {
@@ -65,15 +79,15 @@ window.addEventListener('DOMContentLoaded', function() {
                     }, 3000);
                 }
             });
-            //поиск точки в массиве и конкатенация
             searchDot(str);
+            
             if (str.length < 3) {
                 str = str.join("");
                 lcd.innerHTML = str;
             } else {
                 calculated(str);
             }
-            console.log(str);
+            counter = 0;
             lcd.innerHTML = str.join("");
         }
     });
@@ -124,4 +138,4 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 //оптимизировать
 
-console.log(eval('2+2*2'))
+console.log((1===1.000))

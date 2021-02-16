@@ -11,9 +11,9 @@ window.addEventListener('DOMContentLoaded', function() {
         counter++;
         //замена 0 на другую цифру
         if (counter === 1 && !isNaN(e.target.value)) {
-          if(e.target.value === "0"){
-            counter = 0;
-          }
+            if (e.target.value === "0") {
+                counter = 0;
+            }
             str = str.slice(0, -1);
         }
         if (e.target.value !== '=') {
@@ -34,13 +34,13 @@ window.addEventListener('DOMContentLoaded', function() {
             str = "0";
             counter = 0;
             lcd.innerHTML = str;
-        } 
+        }
         //стирание последнего символа
         if (e.target.classList.contains('del')) {
             if (str.length > 1) {
                 str = str.substr(0, str.length - 1);
                 lcd.innerHTML = str;
-            } else{
+            } else {
                 str = "0";
                 counter = 0;
                 lcd.innerHTML = str;
@@ -50,20 +50,20 @@ window.addEventListener('DOMContentLoaded', function() {
             //разбиваем строку по сииволам
             str = str.split(/\b/);
             //если первый символ выражения "-"
-            if(str[0] === sign[1]){
-               str.unshift(0)
+            if (str[0] === sign[1]) {
+                str.unshift(0)
             }
             //деление на ноль
             str.forEach((el, i) => {
-               if(el === sign[3] && str[i+1] == '0'){
-                 str = "0";
-                 counter = 0;
-                 message.innerHTML = "На ноль делить нельзя!";
-                 setTimeout(() => {
-                   message.innerHTML = "";
-                   lcd.innerHTML = str;
-                 }, 3000);
-               }
+                if (el === sign[3] && str[i + 1] == '0') {
+                    str = "0";
+                    counter = 0;
+                    message.innerHTML = "На ноль делить нельзя!";
+                    setTimeout(() => {
+                        message.innerHTML = "";
+                        lcd.innerHTML = str;
+                    }, 3000);
+                }
             });
             //поиск точки в массиве и конкатенация
             searchDot(str);

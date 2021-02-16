@@ -27,7 +27,9 @@ body {
     font-size: 40px;
     line-height: 100px;
     text-align: right;
-    color: #DBDAD9
+    color: #DBDAD9;
+    padding: 0 10px; 
+    letter-spacing: 2px;
 }
 
 .message {

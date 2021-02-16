@@ -7,7 +7,6 @@ window.addEventListener('DOMContentLoaded', function() {
     let str = '0';
     lcd.innerHTML = str;
     let counter = 0; //счетчик для кликов
-    let fake = '';
     btn.addEventListener('click', function(e) {
         counter++;
         //замена 0 на другую цифру
@@ -48,12 +47,25 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         }
         if (e.target.classList.contains('equals')) {
-            //разбиваеб строку по сииволам
+            //разбиваем строку по сииволам
             str = str.split(/\b/);
             //если первый символ выражения "-"
             if(str[0] === sign[1]){
                str.unshift(0)
             }
+            //деление на ноль
+            str.forEach((el, i) => {
+               if(el === sign[3] && str[i+1] == '0'){
+                 str = "0";
+                 counter = 0;
+                 message.innerHTML = "На ноль делить нельзя!";
+                 setTimeout(() => {
+                   message.innerHTML = "";
+                   lcd.innerHTML = str;
+                 }, 3000);
+               }
+            });
+            //поиск точки в массиве и конкатенация
             searchDot(str);
             if (str.length < 3) {
                 str = str.join("");
@@ -61,6 +73,7 @@ window.addEventListener('DOMContentLoaded', function() {
             } else {
                 calculated(str);
             }
+            console.log(str);
             lcd.innerHTML = str.join("");
         }
     });
@@ -73,8 +86,8 @@ window.addEventListener('DOMContentLoaded', function() {
     }
     //калькулятор
     function calculated(arr) {
-        operation(arr, "/", "*"); //сразу "* и /"
-        operation(arr, "-", "+"); //после "- и +"
+        operation(arr, sign[3], sign[2], message); //сразу "* и /"
+        operation(arr, sign[1], sign[0]); //после "- и +"
     }
     //математическая логика для правильной последовательности операций
     function operation(arr, op1, op2 = op1) {
@@ -86,11 +99,11 @@ window.addEventListener('DOMContentLoaded', function() {
             return arr.join("");
         }
         let replaceEl;
-        for (let i = 0; i < arr.length; i++) {
+        arr.forEach((el, i) => {
             if (arr[i] === op1 || arr[i] === op2) {
                 replaceEl = arr.splice(i - 1, 3, equals(arr[i - 1], arr[i], arr[i + 1]));
             }
-        }
+        })
     }
     //решение выражения
     function equals(num1, op, num2) {
@@ -111,3 +124,4 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 //оптимизировать
 
+console.log(eval('2+2*2'))

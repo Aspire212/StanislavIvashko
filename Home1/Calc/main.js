@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', function() {
         let eValue = e.target.value;
         let eClass = e.target.classList;
         //если после вычисления нажать на знак или цифру
-        if (counter === 0 && str !== '0') {
+        if (counter === 0 && str !== '0' && !eClass.contains('pm')) {
             sign.forEach(el => {
                 eValue !== el ? str = eValue : str = '0' + eValue;
             });
@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
             str = str.slice(0, -1);
         }
-        if (eValue !== '=') {
+        if (eValue !== sign[4]) {
             if (eClass.contains('op')) {
                 //возвращаю значение точке после клика на знаки операций
                 dot.value = sign[7];
@@ -65,12 +65,12 @@ window.addEventListener('DOMContentLoaded', function() {
         }
         //унарный минус
         if (eClass.contains('pm')) {
-            if (str.length === 1 && str !== '0') {
-                str = str.split(/\b/);
+            str = str.split(/\b/);
+            if (str.length < 2) {
                 searchDot(str, sign[7]);
                 str = sign[1] + str;
             } else if (str[0] === sign[1]) {
-                str = str.substr(1, str.length - 1);
+                str.shift();
             }
             if (str === '0') {
                 counter = 0;

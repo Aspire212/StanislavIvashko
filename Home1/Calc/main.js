@@ -8,17 +8,31 @@ window.addEventListener('DOMContentLoaded', function() {
     let str = '0';
     lcd.innerHTML = str;
     let counter = 0; //счетчик для кликов
-    btn.addEventListener('click', function(e) {
+
+    //СОБЫТИЯ
+    btn.addEventListener('click', calc);
+
+
+
+
+
+
+
+
+    //ФУНКЦИИ
+    function calc(e) {
+        let eValue = e.target.value;
+        let eClass = e.target.classList;
         counter++;
         //замена 0 на другую цифру
-        if (counter === 1 && !isNaN(e.target.value) && !e.target.classList.contains('pm') && !e.target.classList.contains('equals')) {
-            if (e.target.value === "0") {
+        if (counter === 1 && !isNaN(eValue) && !eClass.contains('pm') && !eClass.contains('equals')) {
+            if (eValue === "0") {
                 counter = 0;
             }
             str = str.slice(0, -1);
         }
-        if (e.target.value !== '=') {
-            if (e.target.classList.contains('op')) {
+        if (eValue !== '=') {
+            if (eClass.contains('op')) {
                 //возвращаю значение точке после клика на знаки операций
                 dot.value = sign[7];
                 //замена знака операции на новый при нажатии
@@ -26,32 +40,32 @@ window.addEventListener('DOMContentLoaded', function() {
                     el === str[str.length - 1] ? str = str.slice(0, -1) : false;
                 });
             }
-            if (!e.target.classList.contains('keypad')) {
-                if (e.target.value === sign[7]) {
+            if (!eClass.contains('keypad')) {
+                if (eValue === sign[7]) {
                     if (!isNaN(str[str.length - 2])) {
                         str += "0";
                     }
                 }
-                str += e.target.value;
+                str += eValue;
                 //замена знакоа на стороне пользователя
                 lcd.innerHTML = str.replace(sign[3], sign[5]).replace(sign[2], sign[6]);
             }
         }
         //сбросс
-        if (e.target.classList.contains('reset')) {
+        if (eClass.contains('reset')) {
             str = "0";
             counter = 0;
             lcd.innerHTML = str;
         }
         //ноль процентов !true
-        if (e.target.classList.contains('percnt') && str === '0' + e.target.value) {
+        if (eClass.contains('percnt') && str === '0%') {
             console.log(str)
             str = "0";
             counter = 0;
             lcd.innerHTML = str;
         }
         //унарный минус
-        if (e.target.classList.contains('pm')) {
+        if (eClass.contains('pm')) {
             if (str.length === 1 && str !== '0') {
                 str = str.split(/\b/);
                 searchDot(str, sign[7]);
@@ -65,12 +79,12 @@ window.addEventListener('DOMContentLoaded', function() {
             lcd.innerHTML = str;
         }
         //запрет нескольких точек в одном числе, по клику на точку забираю значение
-        if (e.target.value === sign[7]) {
+        if (eValue === sign[7]) {
             dot.value = '';
         }
 
         //стирание последнего символа
-        if (e.target.classList.contains('del')) {
+        if (eClass.contains('del')) {
             if (str.length > 1) {
                 str = str.substr(0, str.length - 1);
                 lcd.innerHTML = str;
@@ -80,7 +94,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 lcd.innerHTML = str;
             }
         }
-        if (e.target.classList.contains('equals')) {
+        if (eClass.contains('equals')) {
             //разбиваем строку по сиимволам
             str = str.split(/\b/);
             //если первый символ выражения "-"
@@ -102,7 +116,7 @@ window.addEventListener('DOMContentLoaded', function() {
             lcd.innerHTML = str;
             str = "0" //если строка не число соunter 1, если чимло str0 counter0
         }
-    });
+    }
 
     function zeros(arr, sym) {
         //деление на ноль

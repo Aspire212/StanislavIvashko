@@ -3,6 +3,7 @@ window.addEventListener('DOMContentLoaded', function() {
     const lcd = document.querySelector('.lcd');
     const message = document.querySelector('.message'); //для деления на "0"!!
     const btn = document.querySelector('.keypad');
+    const dot = document.querySelector('.dot');
     const sign = ["+", "-", "*", "/", "=", "&divide;", "&times;", "."];
     let str = '0';
     lcd.innerHTML = str;
@@ -10,7 +11,7 @@ window.addEventListener('DOMContentLoaded', function() {
     btn.addEventListener('click', function(e) {
         counter++;
         //замена 0 на другую цифру
-        if (counter === 1 && !isNaN(e.target.value) && !e.target.classList.contains('pm')) {
+        if (counter === 1 && !isNaN(e.target.value) && !e.target.classList.contains('pm') && !e.target.classList.contains('equals')) {
             if (e.target.value === "0") {
                 counter = 0;
             }
@@ -18,20 +19,21 @@ window.addEventListener('DOMContentLoaded', function() {
         }
         if (e.target.value !== '=') {
             if (e.target.classList.contains('op')) {
-                //замена знака операции на новый при нажатии         (arr[i-3] ? arr[i-3] : 100);
-
+                //возвращаю значение точке после клика на знаки операций
+                dot.value = sign[7];
+                //замена знака операции на новый при нажатии
                 sign.forEach(el => {
                     el === str[str.length - 1] ? str = str.slice(0, -1) : false;
                 });
             }
             if (!e.target.classList.contains('keypad')) {
-              if(e.target.value === sign[7]){
-                if(!isNaN(str[str.length-2])){
-                  str += "0";
+                if (e.target.value === sign[7]) {
+                    if (!isNaN(str[str.length - 2])) {
+                        str += "0";
+                    }
                 }
-              }
                 str += e.target.value;
-                //замена знакоа на стороне пользователя 
+                //замена знакоа на стороне пользователя
                 lcd.innerHTML = str.replace(sign[3], sign[5]).replace(sign[2], sign[6]);
             }
         }
@@ -42,27 +44,31 @@ window.addEventListener('DOMContentLoaded', function() {
             lcd.innerHTML = str;
         }
         //ноль процентов !true
-        if(e.target.classList.contains('percnt') && str === '0' + e.target.value){
-          console.log(str)
-          str = "0";
-          counter = 0;
-          lcd.innerHTML = str;
+        if (e.target.classList.contains('percnt') && str === '0' + e.target.value) {
+            console.log(str)
+            str = "0";
+            counter = 0;
+            lcd.innerHTML = str;
         }
         //унарный минус
-        if(e.target.classList.contains('pm')){
-          if(str.length === 1 && str !== '0'){
-            str = str.split(/\b/);
-            searchDot(str, sign[7]);
-            str = sign[1] + str;
-          }
-          else if(str[0] === sign[1]){
-            str = str.substr(1, str.length-1);
-          }
-          if(str === '0'){
-            counter = 0;
-          }
-          lcd.innerHTML = str;
+        if (e.target.classList.contains('pm')) {
+            if (str.length === 1 && str !== '0') {
+                str = str.split(/\b/);
+                searchDot(str, sign[7]);
+                str = sign[1] + str;
+            } else if (str[0] === sign[1]) {
+                str = str.substr(1, str.length - 1);
+            }
+            if (str === '0') {
+                counter = 0;
+            }
+            lcd.innerHTML = str;
         }
+        //запрет нескольких точек в одном числе, по клику на точку забираю значение
+        if (e.target.value === sign[7]) {
+            dot.value = '';
+        }
+
         //стирание последнего символа
         if (e.target.classList.contains('del')) {
             if (str.length > 1) {
@@ -79,37 +85,40 @@ window.addEventListener('DOMContentLoaded', function() {
             str = str.split(/\b/);
             //если первый символ выражения "-"
             if (str[0] === sign[1]) {
-              str.unshift(0);
+                str.unshift(0);
             }
+
             searchDot(str, sign[7]);
             searchPrc(str, '%');
-            //деление на ноль
-            str.forEach((el, i) => {
-                if (el === sign[3] && str[i + 1] == '0') {
-                    str = "0";
-                    counter = 0;
-                    message.innerHTML = "На ноль делить нельзя!";
-                    setTimeout(() => {
-                        message.innerHTML = "";
-                        lcd.innerHTML = str;
-                    }, 3000);
-                }
-            });
-            
+            zeros(str, sign[3]);
             if (str.length < 3) {
-                str = str.join("");
+                //str = str.join("");
                 lcd.innerHTML = str;
             } else {
                 calculated(str);
             }
             counter = 0;
-            str = str.join("");
+            //str = str.join("");
             lcd.innerHTML = str;
-            //str="0"//если строка не число соunter 1, если чимло str0 counter0
+            str = "0" //если строка не число соunter 1, если чимло str0 counter0
         }
     });
-    
-    
+
+    function zeros(arr, sym) {
+        //деление на ноль
+        arr.forEach((el, i) => {
+            if (el === sym && (arr[i + 1] === '0' || arr[i + 1] === '0' && arr[i + 2] === '%')) {
+                arr = '0';
+                lcd.innerHTML = arr;
+                counter = 0;
+                message.innerHTML = "На ноль делить нельзя!";
+                setTimeout(() => {
+                    message.innerHTML = "";
+                    lcd.innerHTML = arr;
+                }, 3000);
+            }
+        });
+    }
     //поиск точек в массиве и склеивание в одно число
     function searchDot(arr, sym) {
         arr.map((el, i) => {
@@ -119,13 +128,13 @@ window.addEventListener('DOMContentLoaded', function() {
     }
     //поиск и решение процентов
     function searchPrc(arr, sym) {
-      arr.map((el, i) => {
-        let transformEl;
-        if(el === sym){
-          let b = arr[i-3] ? parseFloat(arr[i-3]) : 1;
-         transformEl = arr.splice(i-1, 2, (parseFloat(b)/ 100 * parseFloat(arr[i-1])).toFixed(3));
-      }
-     });
+        arr.map((el, i) => {
+            let transformEl;
+            if (el === sym) {
+                let b = (arr[i - 2] === sign[0] || arr[i - 2] === sign[1]) ? arr[i - 3] : 1;
+                transformEl = arr.splice(i - 1, 2, (parseFloat(b) / 100 * parseFloat(arr[i - 1])).toFixed(3));
+            }
+        });
     }
     //калькулятор
     function calculated(arr) {
@@ -138,7 +147,7 @@ window.addEventListener('DOMContentLoaded', function() {
     }
     //замена 3-х подряд идущих знаков в массиве на их решение
     function mathLogic(arr, op1, op2 = op1) {
-        if (arr.length < 3) {
+        if (arr.length < 2) {
             return arr.join("");
         }
         let replaceEl;
@@ -162,19 +171,19 @@ window.addEventListener('DOMContentLoaded', function() {
         }
         if (op === '/') {
             newNum = (parseFloat(num1) / parseFloat(num2));
-           return newNum === Math.floor(newNum) ?
-            Math.floor(newNum) : newNum;
+            if (newNum === Infinity) {
+                return newNum = 0;
+            } else {
+                return newNum === Math.floor(newNum) ?
+                    Math.floor(newNum) : newNum;
+            }
         }
     }
 });
 //оптимизировать
-//добавить функцию %
-//запретить ставить несколько точек в одном числе
-//деление на 0
 // в equals доделать концовку
 
 //заменить е.target.value и e.target.classlist на переменные
 
 // перебелать безымянную ф-цию в листенере в именную
- // сделать везде tofixed(3)
- 
+// сделать везде tofixed(3)

@@ -12,17 +12,16 @@ window.addEventListener('DOMContentLoaded', function() {
     //СОБЫТИЯ
     btn.addEventListener('click', calc);
 
-
-
-
-
-
-
-
     //ФУНКЦИИ
     function calc(e) {
         let eValue = e.target.value;
         let eClass = e.target.classList;
+        //если после вычисления нажать на знак или цифру
+        if (counter === 0 && str !== '0') {
+            sign.forEach(el => {
+                eValue !== el ? str = eValue : str = '0' + eValue;
+            });
+        }
         counter++;
         //замена 0 на другую цифру
         if (counter === 1 && !isNaN(eValue) && !eClass.contains('pm') && !eClass.contains('equals')) {
@@ -114,7 +113,6 @@ window.addEventListener('DOMContentLoaded', function() {
             counter = 0;
             //str = str.join("");
             lcd.innerHTML = str;
-            str = "0" //если строка не число соunter 1, если чимло str0 counter0
         }
     }
 
@@ -195,9 +193,16 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 });
 //оптимизировать
-// в equals доделать концовку
-
-//заменить е.target.value и e.target.classlist на переменные
-
-// перебелать безымянную ф-цию в листенере в именную
 // сделать везде tofixed(3)
+
+/*  document.addEventListener('keydown', function(e) {
+        let eKey = e.key;
+        console.log(eKey)
+
+        //str += eKey;
+        lcd.innerHTML = str;
+
+        if (eKey === 'Enter') {}
+
+    });
+ */

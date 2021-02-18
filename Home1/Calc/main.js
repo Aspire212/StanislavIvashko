@@ -187,7 +187,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 return newNum = 0;
             } else {
                 return newNum === Math.floor(newNum) ?
-                    Math.floor(newNum) : newNum;
+                    Math.floor(newNum) : newNum.toFixed(3);
             }
         }
     }

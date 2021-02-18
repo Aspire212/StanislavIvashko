@@ -26,7 +26,7 @@ window.addEventListener('DOMContentLoaded', function() {
         //замена 0 на другую цифру
         if (counter === 1 && !isNaN(eValue) && !eClass.contains('pm') && !eClass.contains('equals')) {
             if (eValue === "0") {
-                counter = 0;
+                counter = 0;;
             }
             str = str.slice(0, -1);
         }
@@ -95,7 +95,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
         if (eClass.contains('equals')) {
             //разбиваем строку по сиимволам
-            str = str.split(/\b/);
+            str = str.split(/\b/).map(el =>!isNaN(el) ? parseFloat(el) : el);
             console.log(str)
 
             //если первый символ выражения "-"
@@ -187,7 +187,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
-//оптимизировать
+//оптимизировать v0.91
 
 /*  document.addEventListener('keydown', function(e) {
         let eKey = e.key;

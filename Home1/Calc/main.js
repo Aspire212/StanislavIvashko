@@ -12,21 +12,33 @@ window.addEventListener('DOMContentLoaded', function() {
     //СОБЫТИЯ
     btn.addEventListener('click', calc);
 
+    document.addEventListener('keydown', function(e) {
+        let eKey = e.key;
+        console.log(eKey)
+
+        //str += eKey;
+        lcd.innerHTML = str;
+
+        if (eKey === 'Enter') {}
+
+    });
+
     //ФУНКЦИИ
     function calc(e) {
+        console.log(e)
         let eValue = e.target.value;
         let eClass = e.target.classList;
         //если после вычисления нажать на знак или цифру
         if (counter === 0 && str !== '0' && !eClass.contains('pm')) {
             sign.forEach(el => {
-                eValue !== el ? str = eValue : str = '0' + eValue;
+                eValue !== el ? str : str = str + eValue;
             });
         }
         counter++;
         //замена 0 на другую цифру
         if (counter === 1 && !isNaN(eValue) && !eClass.contains('pm') && !eClass.contains('equals')) {
             if (eValue === "0") {
-                counter = 0;
+                counter = 0;;
             }
             str = str.slice(0, -1);
         }
@@ -111,7 +123,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 calculated(str);
             }
             counter = 0;
-            //str = str.join("");
+            str = str.join("");
             lcd.innerHTML = str;
         }
     }
@@ -119,7 +131,7 @@ window.addEventListener('DOMContentLoaded', function() {
     function zeros(arr, sym) {
         //деление на ноль
         arr.forEach((el, i) => {
-            if (el === sym && (arr[i + 1] === '0' || arr[i + 1] === '0' && arr[i + 2] === '%')) {
+            if (el === sym && (arr[i + 1] === '0' || arr[i + 1] === '0.000')) {
                 arr = '0';
                 lcd.innerHTML = arr;
                 counter = 0;
@@ -134,8 +146,7 @@ window.addEventListener('DOMContentLoaded', function() {
     //поиск точек в массиве и склеивание в одно число
     function searchDot(arr, sym) {
         arr.map((el, i) => {
-            let concatEl;
-            el === sym ? concatEl = arr.splice(i - 1, 3, (arr[i - 1] + arr[i] + arr[i + 1])) : false;
+            el === sym ? el = arr.splice(i - 1, 3, (arr[i - 1] + arr[i] + arr[i + 1])) : false;
         });
     }
     //поиск и решение процентов
@@ -162,12 +173,7 @@ window.addEventListener('DOMContentLoaded', function() {
         if (arr.length < 2) {
             return arr.join("");
         }
-        let replaceEl;
-        arr.forEach((el, i) => {
-            if (arr[i] === op1 || arr[i] === op2) {
-                replaceEl = arr.splice(i - 1, 3, equals(arr[i - 1], arr[i], arr[i + 1]));
-            }
-        })
+        arr.forEach((el, i) => arr[i] === op1 || arr[i] === op2 ? el = arr.splice(i - 1, 3, equals(arr[i - 1], arr[i], arr[i + 1])) : false);
     }
     //решение выражения
     function equals(num1, op, num2) {
@@ -192,17 +198,4 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
-//оптимизировать
-// сделать везде tofixed(3)
-
-/*  document.addEventListener('keydown', function(e) {
-        let eKey = e.key;
-        console.log(eKey)
-
-        //str += eKey;
-        lcd.innerHTML = str;
-
-        if (eKey === 'Enter') {}
-
-    });
- */
+//оптимизировать v0.91

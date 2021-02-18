@@ -96,6 +96,8 @@ window.addEventListener('DOMContentLoaded', function() {
         if (eClass.contains('equals')) {
             //разбиваем строку по сиимволам
             str = str.split(/\b/);
+            console.log(str)
+
             //если первый символ выражения "-"
             if (str[0] === sign[1]) {
                 str.unshift(0);
@@ -111,7 +113,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 calculated(str);
             }
             counter = 0;
-            //str = str.join("");
+            str = str.join("");
             lcd.innerHTML = str;
         }
     }
@@ -134,17 +136,15 @@ window.addEventListener('DOMContentLoaded', function() {
     //поиск точек в массиве и склеивание в одно число
     function searchDot(arr, sym) {
         arr.map((el, i) => {
-            let concatEl;
-            el === sym ? concatEl = arr.splice(i - 1, 3, (arr[i - 1] + arr[i] + arr[i + 1])) : false;
+            el === sym ? el = arr.splice(i - 1, 3, (arr[i - 1] + arr[i] + arr[i + 1])) : false;
         });
     }
     //поиск и решение процентов
     function searchPrc(arr, sym) {
         arr.map((el, i) => {
-            let transformEl;
             if (el === sym) {
-                let b = (arr[i - 2] === sign[0] || arr[i - 2] === sign[1]) ? arr[i - 3] : 1;
-                transformEl = arr.splice(i - 1, 2, (parseFloat(b) / 100 * parseFloat(arr[i - 1])).toFixed(3));
+                let reg = (arr[i - 2] === sign[0] || arr[i - 2] === sign[1]) ? arr[i - 3] : 1;
+                el = arr.splice(i - 1, 2, (parseFloat(reg) / 100 * parseFloat(arr[i - 1])).toFixed(3));
             }
         });
     }
@@ -162,12 +162,7 @@ window.addEventListener('DOMContentLoaded', function() {
         if (arr.length < 2) {
             return arr.join("");
         }
-        let replaceEl;
-        arr.forEach((el, i) => {
-            if (arr[i] === op1 || arr[i] === op2) {
-                replaceEl = arr.splice(i - 1, 3, equals(arr[i - 1], arr[i], arr[i + 1]));
-            }
-        })
+        arr.forEach((el, i) => arr[i] === op1 || arr[i] === op2 ? el = arr.splice(i - 1, 3, equals(arr[i - 1], arr[i], arr[i + 1])) : false);
     }
     //решение выражения
     function equals(num1, op, num2) {

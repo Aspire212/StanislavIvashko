@@ -107,7 +107,9 @@ window.addEventListener('DOMContentLoaded', function() {
         }
         if (eClass.contains('equals')) {
             //разбиваем строку по сиимволам
-            str = str.split(/\b/);
+            str = str.split(/\b/).map(el =>!isNaN(el) ? parseFloat(el) : el);
+            console.log(str)
+
             //если первый символ выражения "-"
             if (str[0] === sign[1]) {
                 str.unshift(0);
@@ -152,10 +154,9 @@ window.addEventListener('DOMContentLoaded', function() {
     //поиск и решение процентов
     function searchPrc(arr, sym) {
         arr.map((el, i) => {
-            let transformEl;
             if (el === sym) {
-                let b = (arr[i - 2] === sign[0] || arr[i - 2] === sign[1]) ? arr[i - 3] : 1;
-                transformEl = arr.splice(i - 1, 2, (parseFloat(b) / 100 * parseFloat(arr[i - 1])).toFixed(3));
+                let reg = (arr[i - 2] === sign[0] || arr[i - 2] === sign[1]) ? arr[i - 3] : 1;
+                el = arr.splice(i - 1, 2, (parseFloat(reg) / 100 * parseFloat(arr[i - 1])).toFixed(3));
             }
         });
     }
@@ -198,4 +199,20 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+<<<<<<< HEAD
 //оптимизировать v0.91
+=======
+//оптимизировать v0.91
+
+/*  document.addEventListener('keydown', function(e) {
+        let eKey = e.key;
+        console.log(eKey)
+
+        //str += eKey;
+        lcd.innerHTML = str;
+
+        if (eKey === 'Enter') {}
+
+    });
+ */
+>>>>>>> 8a53c6b94ce8dca478d385c4c3edf50a789c0ab4

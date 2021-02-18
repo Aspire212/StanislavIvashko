@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', function() {
         //если после вычисления нажать на знак или цифру
         if (counter === 0 && str !== '0' && !eClass.contains('pm')) {
             sign.forEach(el => {
-                eValue !== el ? str = eValue : str = '0' + eValue;
+                eValue !== el ? str : str = str + eValue;
             });
         }
         counter++;
@@ -193,7 +193,6 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 });
 //оптимизировать
-// сделать везде tofixed(3)
 
 /*  document.addEventListener('keydown', function(e) {
         let eKey = e.key;

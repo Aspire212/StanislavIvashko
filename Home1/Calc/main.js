@@ -14,7 +14,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
     document.addEventListener('keydown', function(e) {
         let eKey = e.key;
-        console.log(eKey)
 
         //str += eKey;
         lcd.innerHTML = str;
@@ -25,7 +24,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
     //ФУНКЦИИ
     function calc(e) {
-        console.log(e)
         let eValue = e.target.value;
         let eClass = e.target.classList;
         //если после вычисления нажать на знак или цифру
@@ -199,9 +197,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
-<<<<<<< HEAD
-//оптимизировать v0.91
-=======
+
 //оптимизировать v0.91
 
 /*  document.addEventListener('keydown', function(e) {
@@ -215,4 +211,3 @@ window.addEventListener('DOMContentLoaded', function() {
 
     });
  */
->>>>>>> 8a53c6b94ce8dca478d385c4c3edf50a789c0ab4

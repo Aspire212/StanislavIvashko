@@ -37,17 +37,17 @@ const letter = {
     'е': 0,
 };
 
-function vovels(str, letter) {
+function vowels(str, letter) {
     if (str === "") {
         return Object.values(letter).reduce((sum, el) => sum + el, 0);
     } else {
         for (let key in letter) {
             str.charAt(0) === key ? letter[key]++ : 0;
         }
-        return vovels(str.substr(1), letter);
+        return vowels(str.substr(1), letter);
     }
 }
-    alert(`В строке ${str} - ${vovels(str, letter)} гласных букв!`);
+    alert(`В строке ${str} - ${vowels(str, letter)} гласных букв!`);
     
 </script>
 </body>

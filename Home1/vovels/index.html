@@ -9,21 +9,46 @@
 
 <body>
 <script>
-  let str = prompt('Введите строку на кирилице:')
-const letter = ['а', 'у', 'о', 'ы', 'и', 'э', 'я', 'ю', 'ё', 'е'];
+ let str = prompt('Введите строку на кирилице:')
+//const letter = ['а', 'у', 'о', 'ы', 'и', 'э', 'я', 'ю', 'ё', 'е'];
 
-function vovels(str, letter) {
+/*function vovels(str, letter) {
     let counter = 0;
     for (let i = 0; i < str.length; i++) {
         for (let j = 0; j < letter.length; j++) {
             if (str[i] === letter[j]) {
-                counter++
+                counter++;
             }
         }
     }
-    return counter
+    return counter;
+}*/
+
+const letter = {
+    'а': 0,
+    'у': 0,
+    'о': 0,
+    'ы': 0,
+    'и': 0,
+    'э': 0,
+    'я': 0,
+    'ю': 0,
+    'ё': 0,
+    'е': 0,
+};
+
+function vovels(str, letter) {
+    if (str === "") {
+        return Object.values(letter).reduce((sum, el) => sum + el, 0);
+    } else {
+        for (let key in letter) {
+            str.charAt(0) === key ? letter[key]++ : 0;
+        }
+        return vovels(str.substr(1), letter);
+    }
 }
-alert(`В строке ${str} - ${vovels(str, letter)} гласных букв!`)
+    alert(`В строке ${str} - ${vovels(str, letter)} гласных букв!`);
+    
 </script>
 </body>
 

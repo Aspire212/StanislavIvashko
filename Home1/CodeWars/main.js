@@ -46,7 +46,73 @@ const calc = (x) => {
 }
 // console.log(canlc("ABC"))
 
+//Array 1 общие элнменты
+const arr1 = [1, 2, 3, "a"];
+const arr2 = [1, 2, 4, "a", "b"]
 
+
+function inter(s1, s2) {
+  let result = [];
+  s1.forEach(el => {
+    if(s2.indexOf(el) !== -1){
+      result.push(el);
+    }
+  });
+  return result;
+}
+//console.log(inter(arr1, arr2))
+
+
+//Array2
+const divCon = (x) => {
+  let sum1 = 0;
+  let sum2 = 0;
+  x.forEach((el) =>{
+    if(typeof el !== "number"){
+      sum2 += parseInt(el);
+    }
+    else{
+      sum1 += el;
+    }
+})
+      return sum1 - sum2;
+}
+
+//console.log(divCon([9, 3, '7', '3']));
+
+//Array3 найти число в массиве которое встречается нечетное кол-во раз!!
+ const arrNum = [20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5] // ответ 5! 
+ 
+ const findOdd = (arr) => {
+   let obj ={};
+   let count = 0;
+   let val;
+   arr.forEach(el =>{ 
+     !obj.hasOwnProperty(el) ? obj[el] = arr.filter(item => item === el).length : false;
+   });
+   return parseIntObject.keys(obj).find(key => obj[key] === Object.values(obj).find(el => !Number.isInteger(parseInt(el) / 2)));
+ }
+ 
+
+//console.log(findOdd(arrNum))
+
+//Array4 вернуть четное или не четное ед числр из массива
+//const array = ([0, 1, 2]) //retur 1
+const array = ([1, 2, 3]) //return 2
+
+const findOutlier = (integers) => {
+  let arrInt = integers.filter(el => Number.isInteger(el/2));
+  let arrNoInt = integers.filter(el => !Number.isInteger(el/2))
+  
+  return arrInt.length > arrNoInt.length ? parseInt(arrNoInt.join("")) : parseInt(arrInt.join(""));
+}
+/*function findOutlier(int) {
+  var even = int.filter(a => a % 2 == 0);
+  var odd = int.filter(a => a % 2 !== 0);
+  return even.length == 1 ? even[0] : odd[0];
+}*/
+
+//console.log(findOutlier(array));
 
 //Object1 подсчет уникальных элементов и закидывпние их в объкт гд значенин это кол-во плвторяющихся элементов;
 
@@ -60,29 +126,25 @@ const  count = (array) => {
   for(let el in obj){
     obj[el] = array.filter(item => item === el).length;
   }
+  console.log(Object.keys(obj))
   return obj;
 }
-//console.log(count(["\\ '15 \\'", "\ '\'", "a", true, "b", "b" ]))
-console.log(count(['a', 'b', 'b', 'a', 'b']))
-//Ожидается: '{\ '15 \': 1, \ '\': 1, a: 1, true: 1, b: 2} ', вместо этого получено:' {\ '15 \ ': 0, \' \ ' : 1, a: 1, истина: 0, b: 2} '
 
 //Object2 killer search 
 
+const obj =   {'James': ['Jacob', 'Bill', 'Lucas'], 'Johnny': ['David', 'Kyle', 'Lucas'], 'Peter': ['Lucy', 'Kyle']}
+const arr =   ['Lucas', 'Bill'];
+
 function killer(suspectInfo, dead) {
-  
-    dead.forEach(name => {
-      for(let el in suspectInfo){
-      suspectInfo[el] = suspectInfo[el].filter(el => el !== name);
-      console.log(el)
-    }
-  })
-  return suspectInfo
+  return Object.keys(suspectInfo).reduce((acc, el) => {
+    let a = 0;
+    suspectInfo[el].forEach(e => {
+      if (dead.indexOf(e) !== -1) {
+        a++;
+      }
+    })
+    if (a === dead.length) acc += el;
+    return acc
+  }, "")
 }
-console.log(killer(
-  {'James': ['Jacob', 'Bill', 'Lucas'], 'Johnny': ['David', 'Kyle', 'Lucas'], 'Peter': ['Lucy', 'Kyle']},
-  
-  ['Lucas', 'Bill']));
-
-//killer({'James': ['Jacob', 'Bill', 'Lucas']},  {'Johnny' : ['David', 'Kyle', 'Lucas']},
-
-console.log([1, 2, 2, 3].filter(el => el == 2))
+//console.log(killer(obj, arr));

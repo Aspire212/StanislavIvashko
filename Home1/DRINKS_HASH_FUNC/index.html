@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <style type="text/css" media="all">
+      div,
+      button{
+        margin: 20px 0;
+      }
+    </style>
+</head>
+
+<body>
+    <div>
+      Введите название напитка:
+      <input type="text/submit/hidden/button/image" name="напиток" id="addName"/>
+    </div>
+    <div>
+      Он алкогольный?
+      <select id="alcoholic">
+        <option value="Да">Да</option> 
+        <option value="Нет" selected="selected">Нет</option> 
+      </select>
+     </div>
+     <div>
+       Рецепт приготовления
+        <textarea id="recipe" rows="8" cols="40"></textarea>
+     </div>
+
+    <button id="addItem">Добавить</button>
+
+  <div>
+    <button id="listItem">Список напитков</button>
+    <ol class="list">
+      
+    </ol>
+  </div>
+<script src="main.js"></script>
+</body>
+
+</html>

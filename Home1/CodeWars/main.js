@@ -46,6 +46,17 @@ const calc = (x) => {
 }
 // console.log(canlc("ABC"))
 
+//Number1 веруть массив числа x в квадрате от 1 до n, если n < 1 вернуть []
+const squares = (x, n) => {
+  let myArr = {};
+  for(let i=1; i<=n;i++){
+   Object.keys(myArr) = i
+  }
+  return myArr
+}
+ 
+ console.log(squares(2, 5))
+
 //Array 1 общие элнменты
 const arr1 = [1, 2, 3, "a"];
 const arr2 = [1, 2, 4, "a", "b"]
@@ -113,6 +124,8 @@ const findOutlier = (integers) => {
 }*/
 
 //console.log(findOutlier(array));
+
+
 
 //Object1 подсчет уникальных элементов и закидывпние их в объкт гд значенин это кол-во плвторяющихся элементов;
 

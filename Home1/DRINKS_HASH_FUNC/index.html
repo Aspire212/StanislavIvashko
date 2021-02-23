@@ -7,42 +7,31 @@
 
     <title></title>
     <style type="text/css" media="all">
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        div {
-            margin: 20px 10px;
-        }
-        
-        button {
-            padding: 3px;
-        }
+
     </style>
 </head>
 
 <body>
-    <div>
-        <p>Введите название напитка:</p>
-        <input type="text/submit/hidden/button/image" name="напиток" id="addName" />
-    </div>
-    <div>
-        Он алкогольный?
-        <select id="alcoholic">
+    <div class="form-group">
+        <div>
+            <p>Введите название напитка:</p>
+            <input type="text/submit/hidden/button/image" name="напиток" id="addName" />
+        </div>
+        <div>
+            Он алкогольный?
+            <select id="alcoholic">
         <option value="Да">Да</option> 
-        <option value="Нет" selected="selected">Нет</option> 
+        <option value="Нет" selected="selected">Нет</option>
       </select>
+        </div>
+        <div>
+            <p>Рецепт приготовления:</p>
+            <textarea id="recipe" rows="8" cols="40"></textarea>
+
+        </div>
+
+        <div> <button id="addItem">Добавить</button> </div>
     </div>
-    <div>
-        <p>Рецепт приготовления:</p>
-        <textarea id="recipe" rows="8" cols="40"></textarea>
-
-    </div>
-
-    <div> <button id="addItem">Добавить</button> </div>
-
     <div>
         <button id="listItem">Список напитков</button>
         <ol class="list">

@@ -46,6 +46,7 @@ addItem.onclick = () => {
         addName.placeholder = "Поле не может быть пустым";
     }
 }
+
 searchList.onclick = () => {
     if (drinkStorage.hasOwnProperty(searchName.value)) {
         searchRecipe.innerHTML = "";

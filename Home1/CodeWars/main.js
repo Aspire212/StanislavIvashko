@@ -47,16 +47,23 @@ const calc = (x) => {
 // console.log(canlc("ABC"))
 
 //Number1 веруть массив числа x в квадрате от 1 до n, если n < 1 вернуть []
-const squares = (x, n) => {
-  let myArr = {};
+/*const squares = (x, n) => {
+  let myArr = [];
   for(let i=1; i<=n;i++){
-   Object.keys(myArr) = i
+    i
+    
   }
   return myArr
 }
  
- console.log(squares(2, 5))
+ console.log(squares(2, 5))*/
 
+
+
+//Number3 отфильтровать число
+const FilterString = (value) => Number(value.split("").filter(el => !isNaN(el)).join(""));
+
+//console.log(typeof FilterString("1abc2abc3"))
 //Array 1 общие элнменты
 const arr1 = [1, 2, 3, "a"];
 const arr2 = [1, 2, 4, "a", "b"]

@@ -53,12 +53,12 @@ searchList.onclick = () => {
             let li = document.createElement('li');
             li.innerHTML = `${key} : ${drinkStorage.getValue(searchName.value)[key]} `;
             searchRecipe.append(li);
-            searchName.value = '';
         }
     } else {
         searchName.value = '';
         searchRecipe.innerHTML = undefined;
     }
+    searchName.value = '';
 }
 
 listItem.onclick = () => {

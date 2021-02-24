@@ -26,7 +26,7 @@ class HashStorageFunc {
         return delete this[key];
     }
     getKeys() {
-        return Object.keys(this)
+        return Object.keys(this);
     }
 }
 
@@ -55,7 +55,6 @@ searchList.onclick = () => {
             searchRecipe.append(li);
         }
     } else {
-        searchName.value = '';
         searchRecipe.innerHTML = undefined;
     }
     searchName.value = '';

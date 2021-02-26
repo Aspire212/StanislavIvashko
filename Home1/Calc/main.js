@@ -199,7 +199,7 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 //оптимизировать v0.91
-
+// даработать точку
 /*  document.addEventListener('keydown', function(e) {
         let eKey = e.key;
         console.log(eKey)

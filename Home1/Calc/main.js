@@ -11,32 +11,22 @@ window.addEventListener('DOMContentLoaded', function() {
 
     //СОБЫТИЯ
     btn.addEventListener('click', calc);
-
-    document.addEventListener('keydown', function(e) {
-        let eKey = e.key;
-
-        //str += eKey;
-        lcd.innerHTML = str;
-
-        if (eKey === 'Enter') {}
-
-    });
-
     //ФУНКЦИИ
     function calc(e) {
+        //если событие клик
         let eValue = e.target.value;
         let eClass = e.target.classList;
         //если после вычисления нажать на знак или цифру
-        if (counter === 0 && str !== '0' && !eClass.contains('pm')) {
+       /* if (counter === 0 && str !== '0' && !eClass.contains('pm')) {
             sign.forEach(el => {
-                eValue !== el ? str : str = str + eValue;
+                eValue !== el ? str = eValue : str = '0' + eValue;
             });
-        }
+        }*/
         counter++;
         //замена 0 на другую цифру
         if (counter === 1 && !isNaN(eValue) && !eClass.contains('pm') && !eClass.contains('equals')) {
             if (eValue === "0") {
-                counter = 0;;
+                counter = 0;
             }
             str = str.slice(0, -1);
         }
@@ -105,9 +95,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
         if (eClass.contains('equals')) {
             //разбиваем строку по сиимволам
-            str = str.split(/\b/).map(el =>!isNaN(el) ? parseFloat(el) : el);
-            console.log(str)
-
+            str = str.split(/\b/);
             //если первый символ выражения "-"
             if (str[0] === sign[1]) {
                 str.unshift(0);
@@ -123,7 +111,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 calculated(str);
             }
             counter = 0;
-            str = str.join("");
+            //str = str.join("");
             lcd.innerHTML = str;
         }
     }
@@ -131,7 +119,7 @@ window.addEventListener('DOMContentLoaded', function() {
     function zeros(arr, sym) {
         //деление на ноль
         arr.forEach((el, i) => {
-            if (el === sym && (arr[i + 1] === '0' || arr[i + 1] === '0.000')) {
+            if (el === sym && (arr[i + 1] === '0' || arr[i + 1] === '0' && arr[i + 2] === '%')) {
                 arr = '0';
                 lcd.innerHTML = arr;
                 counter = 0;
@@ -152,9 +140,10 @@ window.addEventListener('DOMContentLoaded', function() {
     //поиск и решение процентов
     function searchPrc(arr, sym) {
         arr.map((el, i) => {
+            let transformEl;
             if (el === sym) {
-                let reg = (arr[i - 2] === sign[0] || arr[i - 2] === sign[1]) ? arr[i - 3] : 1;
-                el = arr.splice(i - 1, 2, (parseFloat(reg) / 100 * parseFloat(arr[i - 1])).toFixed(3));
+                let b = (arr[i - 2] === sign[0] || arr[i - 2] === sign[1]) ? arr[i - 3] : 1;
+                transformEl = arr.splice(i - 1, 2, (parseFloat(b) / 100 * parseFloat(arr[i - 1])).toFixed(3));
             }
         });
     }
@@ -172,7 +161,12 @@ window.addEventListener('DOMContentLoaded', function() {
         if (arr.length < 2) {
             return arr.join("");
         }
-        arr.forEach((el, i) => arr[i] === op1 || arr[i] === op2 ? el = arr.splice(i - 1, 3, equals(arr[i - 1], arr[i], arr[i + 1])) : false);
+        let replaceEl;
+        arr.forEach((el, i) => {
+            if (arr[i] === op1 || arr[i] === op2) {
+                replaceEl = arr.splice(i - 1, 3, equals(arr[i - 1], arr[i], arr[i + 1]));
+            }
+        })
     }
     //решение выражения
     function equals(num1, op, num2) {
@@ -197,9 +191,8 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+//оптимизировать
 
-//оптимизировать v0.91
-// даработать точку
 /*  document.addEventListener('keydown', function(e) {
         let eKey = e.key;
         console.log(eKey)

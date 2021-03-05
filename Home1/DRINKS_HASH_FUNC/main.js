@@ -41,6 +41,7 @@ addItem.onclick = () => {
         drinkStorage.addValue(addName.value, valobj);
         clearForm();
         console.log(drinkStorage)
+        addName.placeholder = "";
     } else {
         clearForm();
         addName.placeholder = "Поле не может быть пустым";

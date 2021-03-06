@@ -8,7 +8,6 @@ window.addEventListener('DOMContentLoaded', function() {
     let str = '0';
     lcd.innerHTML = str;
     let counter = 0; //счетчик для кликов
-
     //СОБЫТИЯ
     btn.addEventListener('click', calc);
     //ФУНКЦИИ
@@ -17,11 +16,11 @@ window.addEventListener('DOMContentLoaded', function() {
         let eValue = e.target.value;
         let eClass = e.target.classList;
         //если после вычисления нажать на знак или цифру
-       /* if (counter === 0 && str !== '0' && !eClass.contains('pm')) {
-            sign.forEach(el => {
-                eValue !== el ? str = eValue : str = '0' + eValue;
-            });
-        }*/
+        /* if (counter === 0 && str !== '0' && !eClass.contains('pm')) {
+             sign.forEach(el => {
+                 eValue !== el ? str = eValue : str = '0' + eValue;
+             });
+         }*/
         counter++;
         //замена 0 на другую цифру
         if (counter === 1 && !isNaN(eValue) && !eClass.contains('pm') && !eClass.contains('equals')) {
@@ -81,7 +80,6 @@ window.addEventListener('DOMContentLoaded', function() {
         if (eValue === sign[7]) {
             dot.value = '';
         }
-
         //стирание последнего символа
         if (eClass.contains('del')) {
             if (str.length > 1) {
@@ -100,7 +98,6 @@ window.addEventListener('DOMContentLoaded', function() {
             if (str[0] === sign[1]) {
                 str.unshift(0);
             }
-
             searchDot(str, sign[7]);
             searchPrc(str, '%');
             zeros(str, sign[3]);
@@ -185,14 +182,11 @@ window.addEventListener('DOMContentLoaded', function() {
             if (newNum === Infinity) {
                 return newNum = 0;
             } else {
-                return newNum === Math.floor(newNum) ?
-                    Math.floor(newNum) : newNum.toFixed(3);
+                return newNum === Math.floor(newNum) ? Math.floor(newNum) : newNum.toFixed(3);
             }
         }
     }
 });
-//оптимизировать
-
 /*  document.addEventListener('keydown', function(e) {
         let eKey = e.key;
         console.log(eKey)

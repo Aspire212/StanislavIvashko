@@ -14,15 +14,16 @@ function deepCopy(obj) {
   for (let key in obj) {
     if (obj[key] instanceof Object && !Array.isArray(obj[key])) {
       newObj[key] = deepCopy(obj[key]);
+      continue;
     } else if (obj[key] instanceof Object && Array.isArray(obj[key])) {
       newObj[key] = copyArr(obj[key]);
+      continue;
     } else {
       newObj[key] = obj[key];
     }
   }
   return newObj;
 }
-
 
 let nO = deepCopy(bcr);
 nO.f[2][0] = 88;

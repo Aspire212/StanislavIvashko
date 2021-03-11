@@ -1,7 +1,45 @@
 'use strict'
-let reg = 2 * (-3 + 1); //=> -4
+let reg = '2 * (-3 + 1)'; //=> -4
 
 function calc(str) {
-    console.log(str)
+    str = str.split(/\b/);
+
+    return str
 }
-calc(reg)
+console.log(calc(reg))
+
+
+
+/*
+function zeros(arr, sym) {
+        //деление на ноль
+        arr.forEach((el, i) => {
+            if (el === sym && (arr[i + 1] === '0' || arr[i + 1] === '0' && arr[i + 2] === '%')) {
+                arr = '0';
+                lcd.innerHTML = arr;
+                counter = 0;
+                message.innerHTML = "На ноль делить нельзя!";
+                setTimeout(() => {
+                    message.innerHTML = "";
+                    lcd.innerHTML = arr;
+                }, 3000);
+            }
+        });
+    }
+    //поиск точек в массиве и склеивание в одно число
+    function searchDot(arr, sym) {
+        arr.map((el, i) => {
+            el === sym ? el = arr.splice(i - 1, 3, (arr[i - 1] + arr[i] + arr[i + 1])) : false;
+        });
+    }
+    //поиск и решение процентов
+    function searchPrc(arr, sym) {
+        arr.map((el, i) => {
+            let transformEl;
+            if (el === sym) {
+                let b = (arr[i - 2] === sign[0] || arr[i - 2] === sign[1]) ? arr[i - 3] : 1;
+                transformEl = arr.splice(i - 1, 2, (parseFloat(b) / 100 * parseFloat(arr[i - 1])).toFixed(3));
+            }
+        });
+    }
+*/

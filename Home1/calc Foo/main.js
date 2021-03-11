@@ -1,10 +1,25 @@
 'use strict'
-let reg = '2 * (-3 + 1)'; //=> -4
+let reg = '2 * (-3.2 + 1) + (4 - 2)'; //=> -4.4
 
 function calc(str) {
-    str = str.split(/\b/);
-
-    return str
+  
+  str = [str]
+  str.forEach((el, i) => {
+    if ( el === "(") {
+      
+    }
+    
+    
+  })
+    //str = str.split("").filter(el => el !==" ");
+    
+    /*if(str.includes(".")) {
+      str.map((el, i) => {
+        el === "." ? el = str.splice(i - 1, 3, (str[i - 1] + str[i] + str[i + 1])) : false;
+      });
+    }*/
+    
+    return str//.indexOf("\(")
 }
 console.log(calc(reg))
 

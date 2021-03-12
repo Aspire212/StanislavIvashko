@@ -19,7 +19,6 @@ function brekit(str){
 }
 reg = brekit(reg)
 reg = brekit(reg)
-reg = brekit(reg)
 
 
 

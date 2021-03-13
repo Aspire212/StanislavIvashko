@@ -24,10 +24,10 @@ let bcr = {a: {b:2, d: {e: 18, g: [1, 2, 3]}}, c:4, f: [1, 2, [18, 22]]}
   }
   return newObj;
 }*/
-
+//уменьшил код, исправил копировпние функции
 function deepCopy(obj, newObj = {}) {
   for (let key in obj) {
-    if (obj[key] instanceof Object) {
+    if (obj[key] instanceof Object && !(obj[key] instanceof Function)) {
       newObj[key] = Array.isArray(obj[key]) ? deepCopy(obj[key], []) : newObj[key] = deepCopy(obj[key]);
       continue;
     } else {
@@ -36,6 +36,7 @@ function deepCopy(obj, newObj = {}) {
   }
   return newObj;
 }
+
 
 let nO = deepCopy(bcr);
 nO.f[2][0] = 88;

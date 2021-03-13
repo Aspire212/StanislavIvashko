@@ -4,7 +4,7 @@ let bcr = {a: {b:2, d: {e: 18, g: [1, 2, 3]}}, c:4, f: [1, 2, [18, 22]]}
 
 
 
-function deepCopy(obj) {
+/*function deepCopy(obj) {
   let newObj = {};
   const copyArr = (arr) => {
     let newArr = [];
@@ -17,6 +17,18 @@ function deepCopy(obj) {
       continue;
     } else if (obj[key] instanceof Object && Array.isArray(obj[key])) {
       newObj[key] = copyArr(obj[key]);
+      continue;
+    } else {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
+}*/
+
+function deepCopy(obj, newObj = {}) {
+  for (let key in obj) {
+    if (obj[key] instanceof Object) {
+      newObj[key] = Array.isArray(obj[key]) ? deepCopy(obj[key], []) : newObj[key] = deepCopy(obj[key]);
       continue;
     } else {
       newObj[key] = obj[key];

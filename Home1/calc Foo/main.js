@@ -24,7 +24,7 @@ reg = brekit(reg)
 
 
 
-/*function repl(str) {
+function repl(str) {
    if(!str.includes("(")){
      return str 
    }
@@ -39,11 +39,13 @@ reg = brekit(reg)
     
     
 }
-console.log(repl(reg))*/
+repl(reg)
 
     //калькулятор
     function calculated(arr) {
+      console.log(arr)
       arr = arr.split("");
+      arr.map((el, i) => isNaN(el) || arr[i+1] === "-" ? el = arr.splice(i + 1, 2, ('+', arr[i+1] + arr[i + 2])) : el)
       arr.includes(".") && searchDot(arr, sign[7])
       operation(arr, sign[3], sign[2]); //сразу "* и /"
       operation(arr, sign[1], sign[0]); //после "- и +"
@@ -52,7 +54,6 @@ console.log(repl(reg))*/
     }
     //математическая логика для правильной последовательности операций
     function operation(arr, op1, op2 = op1) {
-      console.log(arr)
       arr.forEach(el => (el !== op1 || el !== op2) ? mathLogic(arr, op1, op2) : false);
     }
     //замена 3-х подряд идущих знаков в массиве на их решение
